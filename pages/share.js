@@ -7,6 +7,7 @@ const Share = () => {
   const [copied, setCopied] = useState(false);
 
   const { id } = router.query;
+  const siteURL = process.env.NEXT_PUBLIC_SITE_URL || 'https://wouldyourather.app';
 
   const handleCopy = () => {
     gameURL.current.select();
@@ -36,7 +37,7 @@ const Share = () => {
           type="text"
           ref={gameURL}
           className="w-full text-center font-bold border rounded-sm px-3 py-2"
-          value={`https://wouldyourather.app/g/${id}`}
+          value={`${siteURL}/g/${id}`}
         />
 
         <button
