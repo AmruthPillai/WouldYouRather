@@ -1,0 +1,93 @@
+.btn {
+  @apply text-white font-bold focus:outline-none;
+  @apply px-8 py-2 rounded-sm tracking-wide relative;
+  @apply transition-colors duration-200 ease-in-out;
+}
+
+.btn:hover {
+  top: 1px;
+  left: 1px;
+}
+
+.btn:active {
+  top: 3px;
+  left: 3px;
+}
+
+.btn-block {
+  @apply w-full;
+}
+
+.btn-link {
+  box-shadow:
+    0 1px #e54555,
+    0 2px #e54555;
+
+  @apply text-wyr-dark font-bold rounded-none px-2 py-0;
+}
+
+.btn-red {
+  box-shadow:
+    1px 1px #4392f1,
+    2px 2px #4392f1,
+    3px 3px #4392f1,
+    4px 4px #4392f1;
+
+  @apply bg-wyr-red;
+}
+
+.btn-red:hover {
+  box-shadow:
+    1px 1px #4392f1,
+    2px 2px #4392f1,
+    3px 3px #4392f1;
+}
+
+.btn-red:active {
+  box-shadow: 1px 1px #4392f1;
+}
+
+.btn-blue {
+  box-shadow:
+    1px 1px #e54555,
+    2px 2px #e54555,
+    3px 3px #e54555,
+    4px 4px #e54555;
+
+  @apply bg-wyr-blue;
+}
+
+.btn-blue:hover {
+  box-shadow:
+    1px 1px #e54555,
+    2px 2px #e54555,
+    3px 3px #e54555;
+}
+
+.btn-blue:active {
+  box-shadow: 1px 1px #e54555;
+}
+
+.btn-disabled {
+  box-shadow:
+    1px 1px #ccc,
+    2px 2px #ccc,
+    3px 3px #ccc,
+    4px 4px #ccc;
+
+  @apply bg-gray-400 cursor-not-allowed;
+  @apply transition-colors duration-200 ease-in-out;
+}
+
+.choice {
+  @apply cursor-pointer flex-1 relative py-3;
+}
+
+.choice img {
+  width: 110px;
+  height: 52.86px;
+  left: calc(50% - 55px);
+  top: calc(50% - 26.43px);
+
+  @apply absolute opacity-80;
+}

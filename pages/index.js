@@ -1,65 +1,59 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useCallback, useContext } from "react";
+import { useRouter } from "next/router";
+import { AppContext } from "../contexts/AppContext";
+import { getRandom } from "../utils";
+import { isEmpty } from "lodash";
 
-export default function Home() {
+const Home = () => {
+  const router = useRouter();
+  const { state, dispatch } = useContext(AppContext);
+
+  const handleStart = () => {
+    if (isDisabled()) {
+      return;
+    }
+
+    const randQuestions = getRandom(Object.values(state.questions), 5);
+
+    dispatch({
+      type: "start_game",
+      payload: randQuestions,
+    });
+
+    router.push("/start");
+  };
+
+  const isDisabled = useCallback(() => {
+    if (
+      !isEmpty(state.questions) &&
+      Object.values(state.questions).length >= 5
+    ) {
+      return false;
+    }
+
+    return true;
+  }, [state.questions]);
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className="h-screen flex flex-col items-center justify-center">
+      <img className="w-64 h-64" src="/logo/light.png" alt="Would You Rather" />
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <div className="py-8" />
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+      <button
+        type="button"
+        onClick={handleStart}
+        disabled={isDisabled()}
+        className={`btn btn-red w-3/4 ${isDisabled() && "btn-disabled"}`}
+      >
+        {isDisabled() ? "loading..." : "start new game"}
+      </button>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <button type="button" className="my-6 text-sm btn btn-link">
+        how to play
+      </button>
     </div>
-  )
-}
+  );
+};
+
+export default Home;

@@ -1,9 +1,13 @@
+@import url('animate.css');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@300;600&display=swap');
+
 html,
 body {
   padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  margin: 0 auto;
+  max-width: 414px;
+  max-height: 896px;
+  font-family: 'Overpass', sans-serif;
 }
 
 a {
